@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+	
+<tiles-definitions>
+	
+	<definition name="baseLayout" template="/WEB-INF/jsp/layout/MainTemplate.jsp">
+		<put-attribute name="title"  value="Template"/>
+	</definition>
+	
+	<definition name="suiteExecContext" template="/WEB-INF/jsp/viewSuiteExecContext.jsp">
+	</definition>
+	
+	<definition name="emailSuiteExecContext" template="/WEB-INF/jsp/emailSuiteExecContext.jsp">
+	</definition>
+
+	<definition name="summaryreport" template="/results/SUMMARY/classify.html">
+		</definition>
+		
+	
+	<definition name="summaryreport1" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="activitystatus"/>
+   		<put-attribute name="body" value="/results/SUMMARY/classify.html"/>	
+	</definition>
+	
+	<definition name="tests" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="testssub"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/pad/tests.jsp"/>
+	</definition>		
+	
+		
+	<definition name="suites" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="suitessub"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/pad/suites.jsp"/>		
+	</definition>	
+	
+	
+	<definition name="activitystatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="activitystatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/activity.jsp"/>	
+	</definition>
+	
+	
+	
+	<definition name="resultsstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="resultsstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/results.jsp"/>	
+	</definition>
+	
+	<definition name="executorsstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="executorstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/executors.jsp"/>			
+	</definition>
+	
+	<definition name="executorsstatusrefresh" template="/WEB-INF/jsp/status/executorsDetails.jsp">	
+	</definition>
+	
+	<definition name="resourcesstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="resourcesstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/resources.jsp"/>			
+	</definition>
+	
+	<definition name="resourcesstatusnew" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="resourcesstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/resourcesnew.jsp"/>			
+	</definition>
+	
+	<definition name="cronstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="cronstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/cron.jsp"/>			
+	</definition>
+	
+	<definition name="targetgridstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="targetgridstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/targetgrid.jsp"/>			
+	</definition>
+	
+	<definition name="projectsstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="projectsstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/projects.jsp"/>			
+	</definition>
+	
+	<definition name="gridnodesstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="gridnodesstatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/gridnodes.jsp"/>			
+	</definition>
+		
+	<definition name="suitecontextstatus" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="activitystatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/suitecontext.jsp"/>			
+	</definition>
+	
+	<definition name="suitecontextstatusnew" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="activitystatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/suitecontextnew.jsp"/>			
+	</definition>
+	
+	<definition name="suitecontextstatusrefresh" template="/WEB-INF/jsp/status/suitecontext_.jsp">	
+	</definition>
+	
+	<definition name="suitecontextemailstatus" template="/WEB-INF/jsp/status/suitecontextemail.jsp">		
+	</definition>
+	
+	<definition name="perfomancereport" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="activitystatus"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/status/perfomancereport.jsp"/>			
+	</definition>
+	
+	<definition name="json" template="/WEB-INF/jsp/status/json.jsp">
+	
+	</definition>
+	
+	<definition name="suitecontextstatusjson" template="/WEB-INF/jsp/status/suitecontextjson.jsp">			
+	</definition>
+	
+	<definition name="resourcesstatusjson" template="/WEB-INF/jsp/status/resourcesjson.jsp">			
+	</definition>
+	
+	
+	
+	<definition name="viewrun" extends="baseLayout">
+		<put-attribute name="selectedMenu" value="viewrun"/>
+   		<put-attribute name="body" value="/WEB-INF/jsp/viewrun.jsp"/>
+	</definition>	
+
+	
+</tiles-definitions>
