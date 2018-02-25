@@ -1,0 +1,116 @@
+/* =============HTML ELEMENT STYLES============== */
+a {
+  color: #339;
+}
+textarea, select, input.text, input.textsmall {
+  border-color: #aabacd;
+}
+*html textarea, *html select, *html input.text, *html input.textsmall {
+  border-color: #9ac;
+}
+body {
+  background: #d1def2;
+}
+
+
+
+/* =============HEADER STYLES============== */
+.InfHeader {
+  background: url("../images/bg_header_infa.png");
+}
+.InfHeader .actions,
+.InfHeader .actions a,
+.InfHeader .actions a:hover {
+  color: #30307a;
+}
+.InfPopupBody {
+  background: #f3f3f3;
+  padding: 16px;
+}
+
+
+/* =============PRIMARY NAV STYLES========= */
+.InfNavTabs td.tab {
+  background: url("../images/bg_nav_infa.png");
+}
+.InfNavTabs td.hovertab,
+.InfNavTabs td.selectedtab {
+  background: url("../images/bg_nav_sel_infa.png");
+}
+.InfNavTabs td.tab span {
+  color: #eef2f7;
+}
+.InfNavTabs td.hovertab span,
+.InfNavTabs td.selectedtab span {
+  color: #fff;
+}
+
+/* =============SECONDARY NAV STYLES========= */
+.InfSecNavBar {
+  background: url("../images/bg_secnav.png");
+}
+.InfSecNavBar td.sn {
+  padding: 3px 14px 3px 14px;
+}
+.InfSecNavBar td.sel {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #8aa2cc;
+  background: #bcd0ec;
+}
+.InfSecNavBar td.sn span {
+  color: #888;
+}
+.InfPrefSect2,
+.InfPrefSect, .InfPrefSect a,
+.InfHelpSect, .InfHelpSect a,
+.InfSecNavBar td.sel span {
+  color: #30307a;
+}
+
+/* =============PANE STYLES========= */
+.InfPane {
+  border-color: #8aa2cc;
+}
+.InfPane td.hdr {
+  border-color: #8aa2cc;
+  background: #bcd0ec;
+}
+.InfPane div.titlebox {
+  border-color: #d0def2;
+}
+.InfPane td.pnactions {
+  border-color: #ccc;
+  background: #edeef0;
+}
+.InfPane td.body {
+  background: #ffffff;
+}
+
+
+
+/* =============BUTTON STYLES========= */
+.InfButton tr td.btn {
+  border-color: #bbb;
+  background: url("../images/bg_btn_infa.gif");
+}
+.InfButton tr td.hoverbtn {
+  border-color: #7f9db9;
+  background: url("../images/bg_btn_sel_infa.gif");
+}
+.InfButton tr td.disabledbtn {
+  border-color: #cdd0de;
+  background: url("../images/bg_btn_disabled_infa.gif");
+}
+.InfButton tr td.btn span {
+  color: #494949;
+}
+.InfButton tr td.hoverbtn span {
+  color: #000;
+}
+.InfButton tr td.disabledbtn,
+.InfButton tr td.disabledbtn span {
+  color: #777;
+}
+
+

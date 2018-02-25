@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+  version="2.1">
+
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.2</jsp-version>
+  <short-name>pn</short-name>
+  <uri>http://www.informatica.com/tags/pnBali</uri>
+
+
+  <!-- ================================================================== -->
+  <!-- navbar                                                             -->
+  <!-- ================================================================== -->
+  <tag>
+    <name>navbar</name>
+    <tag-class>org.kkonoplev.bali.taglib.NavbarBaliTag</tag-class>
+    <bodycontent>empty</bodycontent>
+    <display-name>Navigation Bar Tag</display-name>
+    <description>
+      <![CDATA[It renders the navigation menus for the application.  The
+      list of menus for a given user are retrieved from the user session.]]>
+    </description>
+
+    <attribute>
+      <name>selectedMenu</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[The id of the navigation menu that is currently selected.]]>
+      </description>
+    </attribute>
+    <attribute>
+      <name>hideTabs</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[If true the tabs will be hidden.]]>
+      </description>
+    </attribute>
+  </tag>
+  
+  <!-- ================================================================== -->
+  <!-- tree                                                             -->
+  <!-- ================================================================== -->
+  <tag>
+    <name>tree</name>
+    <tag-class>org.kkonoplev.bali.taglib.TreeTag</tag-class>
+    <bodycontent>empty</bodycontent>
+    <display-name>Web Tree Tag</display-name>
+    <description>
+      <![CDATA[It renders the Web Tree with checkboxes. Selection is saved in hidden input fields.]]>
+    </description>
+
+    <attribute>
+      <name>source</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[FileWebTreeObject]]>
+      </description>
+    </attribute>
+
+  </tag>
+  
+   <!-- ================================================================== -->
+  <!-- projects tree                                                             -->
+  <!-- ================================================================== -->
+  <tag>
+    <name>projectstree</name>
+    <tag-class>org.kkonoplev.bali.taglib.ProjectsTreeTag</tag-class>
+    <bodycontent>empty</bodycontent>
+    <display-name>Projects Web Tree Tag</display-name>
+    <description>
+      <![CDATA[It renders the Projects Web Tree with checkboxes. Selection is saved in hidden input fields.]]>
+    </description>
+
+    <attribute>
+      <name>projects</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[ProjectListObject]]>
+      </description>
+    </attribute>
+    
+    <attribute>
+      <name>suiteMdl</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[SuiteMdlObject]]>
+      </description>
+    </attribute>
+    
+    <attribute>
+      <name>treeId</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        <![CDATA[treeId]]>
+      </description>
+    </attribute>
+
+  </tag>
+
+</taglib>

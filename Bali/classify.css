@@ -1,0 +1,179 @@
+.tests {
+    border-style:solid;
+    border-color:#fff;
+    border-width:0 1px 1px 1px;
+    width:424px;
+    padding:12px 8px;
+}
+
+.svcHdr {
+    border:1px solid #fff;
+    background:#E7EEF7;
+    width:154px;
+    padding:5px 8px;
+    font-weight:bold;
+}
+  
+.svcBody {
+    border-style:solid;
+    border-color:#fff;
+    border-width:0 1px 1px 1px;
+    width:424px;
+    padding:12px 8px;
+}
+  
+.svcAll {
+    border-style:solid;
+    border-color:#fff;
+    border-width:1px 1px 1px 1px;
+    width:324px;
+    padding:12px 8px;
+}
+  
+
+
+.tip_top, .tip_topNear {
+position: absolute;  
+visibility: hidden;  
+background:#E0E0FF;
+border: 0px solid rgb(255,80,23);
+text-align:center;  
+}
+
+body {
+    font:normal 68% verdana,arial,helvetica;
+    color:#000000;
+}
+
+
+table tr td, table tr th {
+    font-size: 90%;
+}
+
+table.details tr th{
+    font-weight: bold;
+    text-align:center;
+    background:#E0E0FF;
+}
+
+
+table.details tr {
+    background: #EEF7FF;
+}
+
+table.detail th {
+    background:#E0E0FF;
+}
+
+
+.a {
+    background: #EEF7FF;
+}
+
+.b {
+    background: #E8F7FF;
+}
+
+
+
+.buglink {
+	text-decoration:underline; 
+	color: 0 ;
+	font-size: 12px;
+}
+
+a.buglink:visited {
+	text-decoration:underline; 
+	color: 0 ;
+	font-size: 12px;
+}
+
+.rerunCheck {
+	color:grey;
+	background:#EEF7FF;
+}
+
+
+.ctrl {
+	color:#5656A3;
+}
+
+a.ctrl:visited {
+	color:#5656A3;
+}
+
+
+.scrlink {
+	text-decoration:underline; 
+	font-size: 13px;
+}
+
+.exit {
+	text-decoration:underline; 
+	color: blue ;
+	font-size: 15px;
+}
+
+.smalltxt {
+	color: blue ;
+	font-size: 11px;
+}
+
+
+p {
+    line-height:1.5em;
+    margin-top:0.5em; margin-bottom:1.0em;
+}
+h1 {
+    margin: 0px 0px 5px; font: 165% verdana,arial,helvetica
+}
+h2 {
+    margin-top: 1em; margin-bottom: 0.5em; font: bold 125% verdana,arial,helvetica
+}
+h3 {
+    margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica
+}
+h4 {
+    margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+}
+h5 {
+    margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+}
+h6 {
+    margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+}
+.commonError {
+    font-weight: bold;
+}
+.Error {
+    font-weight:bold; color: #FF0000; background: #FEEDF0;
+}
+.Failure {
+    font-weight:bold; color: #A800DE; background: #F3EDFF;
+}
+.Noncritical {
+    font-weight:bold; color:#809CE4; background: #EEF7FF;
+}
+.Properties {
+  text-align:right;
+}
+
+a {
+	color:#5656A3;
+	text-decoration:underline;
+}
+
+a:hover {
+	color:#5656A3;
+	text-decoration:none;
+}
+
+a:visited {
+	color:#A3568E;
+
+}
+
+a:active {
+	color:#5656A3;
+
+}

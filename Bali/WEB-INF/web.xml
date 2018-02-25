@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
+  
+  
+   <!-- ================================================================== -->
+   <!-- Resource bundle for JSTL                                           -->
+   <!-- ================================================================== -->
+   <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    	<param-value>org.kkonoplev.bali.taglib.bali</param-value>
+    	   
+   </context-param>
+
+   <servlet>      
+    	<servlet-name>executecmd</servlet-name>        	
+    	<servlet-class>temp.ExecuteCmd</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+   </servlet>
+    
+   <servlet-mapping>      
+        <servlet-name>executecmd</servlet-name>
+        <url-pattern>/executecmd</url-pattern>
+   </servlet-mapping>
+  
+   <servlet>      
+    	<servlet-name>dispatcher</servlet-name>        	
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   		<load-on-startup>2</load-on-startup>   		
+   </servlet>
+    
+   <servlet-mapping>      
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/form/*</url-pattern>
+   </servlet-mapping>
+  
+ 
+   
+   <!-- ================================================================== -->
+   <!-- Listener Configuration                                             -->
+   <!-- ================================================================== -->
+   <listener>
+   		<listener-class>org.kkonoplev.bali.init.InitBaliListener</listener-class>
+   </listener>
+  
+   <!-- ================================================================== -->
+   <!-- Application Tag Library Descriptor                                 -->
+   <!-- ================================================================== -->
+   <jsp-config>
+    <taglib>
+      <taglib-uri>http://www.informatica.com/tags/pnBali</taglib-uri>
+      <taglib-location> /WEB-INF/pnBali.tld</taglib-location>
+    </taglib>
+   </jsp-config>
+   
+   
+  <!-- ================================================================== -->
+  <!-- Welcome file list for the web application                          -->
+  <!-- ================================================================== -->
+  <welcome-file-list>
+    <welcome-file>Index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>    
+  </welcome-file-list>
+     
+     
+ </web-app>

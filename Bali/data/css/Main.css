@@ -1,0 +1,240 @@
+/* =============HTML ELEMENT STYLES============== */
+body, div, ul, ol, li,
+p, span, label, br,
+table, tr, td, th,
+form, select, textarea, input,
+h1, h2, h3, h4, h5, h6 {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+}
+
+h1 { font-size: 20px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; }
+h4 { font-size: 14px; }
+h5 { font-size: 12px; }
+h6 { font-size: 11px; }
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+select {
+  border-style: solid;
+  border-width: 1px;
+}
+textarea, input.text, input.textsmall {
+  border-style: solid;
+  border-width: 1px;
+  width: 400px;
+}
+input.textsmall, .textsmall {
+  width: 260px;
+}
+select.textsmall {
+  width: 262px;/*additional 2px is border */
+}
+input.ghost {
+  font-family: verdana;
+  font-size: 11px;
+  color: #999999;
+}
+input.ipaddress {
+  width: 260px;
+}
+p {
+  margin: 8px 0px 8px 0px;
+  padding: 0;
+}
+img  {
+  border:0;
+  vertical-align: middle;
+}
+
+/* =============TABLE STYLES============== */
+
+.svcHdr {
+    border:1px solid #fff;
+    background:#E7EEF7;
+    width:154px;
+    padding:5px 8px;
+    font-weight:bold;
+}
+  
+.svcBody {
+    border-style:solid;
+    border-color:#fff;
+    border-width:0 1px 1px 1px;
+    width:424px;
+    padding:12px 8px;
+}
+  
+.svcAll {
+    border-style:solid;
+    border-color:#fff;
+    border-width:1px 1px 1px 1px;
+    width:324px;
+    padding:12px 8px;
+}
+  
+
+
+
+/* =============HEADER STYLES============== */
+#InfMPage {
+  width: 100%;
+}
+.InfHeader {
+  height: 70px;
+  width: 100%;
+}
+.InfPgBody {
+  padding: 10px 20px 10px 20px;
+  vertical-align: top;
+}
+
+/* =============PRIMARY NAV STYLES========= */
+.InfNavTabs {
+  padding-left: 22px;
+  width: 100%;
+}
+.InfPrefSect {
+  padding: 0px 22px 4px 22px;
+  white-space: nowrap;
+}
+.InfPrefSect2 {
+  float: right;
+  padding: 50px 22px 0 0;
+}
+.InfNavTabs td.tab,
+.InfNavTabs td.hovertab,
+.InfNavTabs td.selectedtab {
+  border-width: 0;
+  white-space: nowrap;
+  font-weight: bold;
+  padding: 4px 14px 4px 14px;
+  cursor: pointer;
+}
+.InfNavTabs td.spacer {
+  width: 3px;
+}
+.InfNavTabs span {
+  font-size: 12px;
+}
+.InfPrefSect a {
+  color: #30307a;
+}
+
+/* =============SECONDARY NAVBAR STYLES========= */
+.InfSecNavBar {
+  padding: 9px 22px 0 22px;
+  white-space: nowrap;
+  width: 100%;
+}
+.InfHelpSect {
+  padding-left: 9px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.InfSecNavBar td.sn,
+.InfSecNavBar td.sel {
+  white-space: nowrap;
+  padding: 2px 13px 2px 13px;
+  cursor: pointer;
+}
+.InfSecNavBar td.spacer {
+  padding: 0;
+  width: 9px;
+}
+.InfSecNavBar span {
+  font-weight: normal;
+  cursor: pointer;
+}
+.InfHelpSect a {
+  color: #30307a;
+}
+
+
+/* =============PANE STYLES========= */
+.InfPane {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+}
+.InfPane td.imgcol {
+  vertical-align: top;
+  padding-right: 16px;
+}
+.InfPane td.hdrcol {
+  width: 100%;
+  vertical-align: top;
+}
+.InfPane td.hdr {
+  width: 100%;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  padding: 8px 12px;
+}
+.InfPane div.titlebox {
+  padding-bottom: 8px;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+.InfPane span.title {
+  font-weight: bold;
+  font-size: 12px;
+}
+.InfPane div.descbox {
+  padding-top: 8px;
+}
+.InfPane td.pnactions {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  padding: 4px 12px;
+}
+.InfPane td.wizactions {
+  padding: 12px 12px 8px 12px;
+}
+.InfPane td.body {
+  vertical-align: top;
+  border-width: 0;
+  padding:0;
+}
+.InfPane td.bodypad {
+  padding: 10px;
+}
+
+
+/* =============BUTTON STYLES========= */
+.InfButton tr td.spacer {
+  padding: 0 6px 0 0;
+}
+.InfButton tr td.bspacer {
+  padding: 0 5px;
+}
+.InfButton span {
+  font-weight: normal;
+  cursor: pointer;
+}
+.InfButton tr td.btn,
+.InfButton tr td.hoverbtn,
+.InfButton tr td.disabledbtn {
+  cursor: pointer;
+  padding: 2px 6px 2px 6px;
+  white-space: nowrap;
+  border-width: 1px;
+  border-style: solid;
+}
+.InfButton tr td.disabledbtn {
+  cursor: default;
+}
+.InfIcon {
+  cursor: pointer;
+}
+
