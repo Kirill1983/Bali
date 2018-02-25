@@ -231,8 +231,8 @@ public class GridHubService {
 		return rpt;
 	}
 
-	public void rerunWarnings(String resultDir, String warningsIds) throws Exception {
-		GridSuiteExecContext gsuiteExecContext = getGridSuiteExecContext(resultDir);
+	public void rerunWarnings(GridSuiteExecContext gsuiteExecContext,  String warningsIds) throws Exception {
+		String resultDir = gsuiteExecContext.getResultDir();
 		ClassifyReport classifyReport = gsuiteExecContext.getClassifyReport();
 		
 		log.info("Rerun resultDir ="+resultDir+", warnings "+warningsIds);

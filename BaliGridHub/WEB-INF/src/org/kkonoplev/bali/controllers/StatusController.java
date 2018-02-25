@@ -529,10 +529,12 @@ public class StatusController {
 	    public String rerun(HttpServletRequest req, HttpServletResponse res) throws Exception {
 			
 			String warningsIds = req.getParameter("warningIDs");
-			String resDir = req.getParameter("resultDir");
-			BaliServices.getGridHubService().rerunWarnings(resDir, warningsIds);	
+			String resultDir = req.getParameter("resultDir");
 			
-			return "redirect:/form/status/classifyreport?resultDir="+resDir;
+			GridSuiteExecContext ctx = BaliServices.getSuiteService().getGridSuiteExecContext(resultDir);
+			BaliServices.getGridHubService().rerunWarnings(ctx, warningsIds);	
+			
+			return "redirect:/form/status/classifyreport?resultDir="+resultDir;
 		}
 		
 		@RequestMapping(value="/update")
