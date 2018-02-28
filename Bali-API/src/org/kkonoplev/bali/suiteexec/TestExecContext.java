@@ -39,6 +39,7 @@ import org.kkonoplev.bali.runner.RunnableItem;
 import org.kkonoplev.bali.services.ProjectService;
 import org.kkonoplev.bali.suiteexec.resource.RequiredTestResource;
 import org.kkonoplev.bali.suiteexec.resource.TestExecResource;
+import org.kkonoplev.bali.treelogger.TreeLog;
 
 
 
@@ -70,6 +71,8 @@ public class TestExecContext implements Serializable {
 	protected int threadId = 1;
 	protected int errorCount = 0;
 	protected int captureCount = 0;
+	
+	private TreeLog treeLog = new TreeLog();
 	
 	public static final String testClassPre = "org.kkonoplev.cloud.autotests.";
 
@@ -124,6 +127,7 @@ public class TestExecContext implements Serializable {
 		errorCount = 0;
 		captureCount = 0;
 		resources = new ArrayList<TestExecResource>();
+		this.treeLog = new TreeLog(className);
 		
 		ProjectService projectSvc = suiteExecContext.getExecProcessor().getProjectSvc();
 		BaseProject project = projectSvc.getProject(projectName);
@@ -195,6 +199,8 @@ public class TestExecContext implements Serializable {
 		ClassifyReportHTMLBuilder classifyReportBuilder = new ClassifyReportHTMLBuilder(suiteExecContext.getClassifyReport());
 		classifyReportBuilder.save();
 
+		getTreeLog().addFailMarkToLastMsg();
+		
 		if (getDebugMode()) {
 
 			TestExecutor testExecutor = getTestExecutor();
@@ -634,6 +640,14 @@ public class TestExecContext implements Serializable {
 
 	public void setNeedStop(boolean needStop) {
 		this.needStop = needStop;
+	}
+
+	public TreeLog getTreeLog() {
+		return treeLog;
+	}
+
+	public void setTreeLog(TreeLog treeLog) {
+		this.treeLog = treeLog;
 	}
 	
 	

@@ -48,6 +48,8 @@ import org.kkonoplev.bali.suiteexec.TestExecContextState;
 import org.kkonoplev.bali.suiteexec.TestExecutor;
 import org.kkonoplev.bali.suiteexec.resource.InitResourcesThread;
 import org.kkonoplev.bali.suiteexec.resource.ResourcePool;
+import org.kkonoplev.bali.treelogger.TreeLog;
+import org.kkonoplev.bali.treelogger.TreeLogHTMLBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -481,7 +483,28 @@ public class StatusController {
 		 	return emailSuiteContextTile;
 		 	
 		} 	
-		
+
+		@RequestMapping(value="/treeloghtml")
+		 public String treeloghtml(HttpServletRequest req, HttpServletResponse res, @ModelAttribute("TestExecContext") TestExecContext testExecContextBean) throws Exception {
+				
+			SuiteService suiteSvc = BaliServices.getSuiteService();	
+			SuiteExecContext suiteExecContext = suiteSvc.getSuiteExecContext(req.getParameter("resultDir"));
+			req.setAttribute("suiteExecContext", suiteExecContext);
+	
+			TestExecContext testExecContext = suiteExecContext.findByClassNameThreadId(testExecContextBean.getClassName(), testExecContextBean.getThreadId());
+			TreeLog tlog = testExecContext.getTreeLog();
+			
+			String fname = "treeLog.html";
+			TreeLogHTMLBuilder builder = new TreeLogHTMLBuilder(tlog);
+			builder.setJquerysrc("");
+			builder.setJquerytreesrc("");
+			builder.setCss("/bali/data/tree/demo.css");
+			String html = builder.buildHTML();
+			res.getWriter().append(html);
+
+			return null;
+		}
+
 		@RequestMapping(value="/exportresults")
 		 public String exportResults(HttpServletRequest req, HttpServletResponse res, @ModelAttribute("SuiteExecContext") SuiteExecContext suiteExecContext) throws Exception {
 			

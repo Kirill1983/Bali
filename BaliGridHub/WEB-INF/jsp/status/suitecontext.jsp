@@ -42,6 +42,30 @@
 	  $.get(nodeUrl+"/form/status/update?"+property+"="+checked+"&className="+test+"&threadId="+threadId+"&resultDir="+resultDir, function(data) {});
   }
 
+  function previewTreeLog(event, test, threadId, nodeUrl, resultDir) {
+	  
+	  var treelog = document.getElementById("treelog");
+
+	  if (treelog.style.visibility == 'visible'){
+		  treelog.style.visibility = 'hidden';
+		  return;
+	  }  
+	  
+	  $.get(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId,
+			  function(data) {
+		  		$("#treelog").html(data);
+	
+		  		treelog.style.left = event.clientX;
+		  		treelog.style.top  = event.clientY;
+		  		treelog.style.visibility = 'visible'; 
+
+		  		refreshPage();
+		  		
+			  }
+	  		);
+	  		
+  }
+ 
   function ajax(req) { 
 	  $.get(req, function(data) {});		 
   }
@@ -60,9 +84,8 @@
 
 
    	
-<div id=suitecontext>
-</div>
-
+<div id=suitecontext />
+<div id=treelog onclick="this.style.visibility = hidden;" style="width: auto; height: auto; visibility: hidden; background: #E0E0FF; position: absolute; border: solid 1px black; "></div>
 
 
 <c:forEach items="${gsuiteExecContext.gsuiteMdl.nodeSuites}" var="nodeSuite">	 
@@ -183,12 +206,12 @@ function renderNodeSuiteContextHeader(suiteExecContext, resultDir, nodeUrl){
 			var items = [];
 			
 			$.each(suiteExecContext.testExecContexts, function(i, testExecContext) {
-				items.push('<TR>');
-				items.push('<TD class="svcBody">'+(i+1)+'. ' + testExecContext.lineViewLabel + '</TD>');
+			items.push('<TR>');
+			items.push('<TD class="svcBody"> <A href="#" onclick="previewTreeLog(event,\''+testExecContext.className+'\',\''+testExecContext.threadId+'\',\''+nodeUrl+'\', \''+resultDir+'\');" >' +(i+1)+'. '+testExecContext.lineViewLabel + ' </a> </TD>');
 				
-				if (suiteExecContext.loadMode == true){
-					items.push('<TD class="svcBody">' + testExecContext.loops + '</TD>');
-				}
+			if (suiteExecContext.loadMode == true){
+				items.push('<TD class="svcBody">' + testExecContext.loops + '</TD>');
+			}
 				
 			items.push('<TD class="svcBody" >' + testExecContext.errorCount + '</TD>');
 			status = testExecContext.status;

@@ -87,6 +87,7 @@ public class TestExecContextBuilder {
 		testExecContext.setProjectName(projectName);
 		testExecContext.setClassName(className);
 		testExecContext.setSuiteExecContext(suiteExecContext);
+		testExecContext.getTreeLog().setName(className);
 
 		SuiteMdl suiteMdl = suiteExecContext.getSuiteMdl();
 		testExecContext.setCaptureMode(suiteMdl.isCapturemode());
