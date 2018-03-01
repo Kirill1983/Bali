@@ -3,6 +3,7 @@ package org.kkonoplev.bali.classifyreport;
 import org.apache.log4j.Logger;
 import org.kkonoplev.bali.classifyreport.model.Warning;
 import org.kkonoplev.bali.classifyreport.model.WarningCase;
+import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseTreeLogArtifact;
 import org.kkonoplev.bali.suiteexec.TestExecContext;
 	
 public class WarningBuilder {
@@ -22,6 +23,8 @@ public class WarningBuilder {
 				testExecContext.getRunnableNode().getFullName(), 
 				mainAndAddtext[1]
 			);
+		
+		warningCase.getArtifacts().add(new WarningCaseTreeLogArtifact(testExecContext.getErrorCount()+"", testExecContext.getThreadId()+""));
 		
 		for (WarningCaseArtifactsBuilder artifactsBuilder: artifactsBuilders)
 			warningCase.getArtifacts().addAll(artifactsBuilder.build());

@@ -62,7 +62,7 @@
   
 </script>
   
-<form:form action="/bali/form/pad/run" method="post" name="RunForm" modelAttribute="suiteMdl">
+<form:form action="/bali/form/pad/run" method="post" target="blank" name="RunForm" modelAttribute="suiteMdl">
 <table style="padding-left:40px; padding-top:40px;">
 
 <tr><td class="svcHdr">	Target options:</td></tr>

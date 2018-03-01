@@ -65,16 +65,23 @@
 	  $.get(req, function(data) {});		 
  }
  
+ function clickDoc(event){
+	  var treelog = document.getElementById("treelog");
+
+	  if (treelog.style.visibility == 'visible'){
+		  treelog.style.visibility = 'hidden';
+	  }  
+	 
+ }
 </script>
 
 
-<body id="InfHtmlBody">
+<body id="InfHtmlBody" onclick="clickDoc(event);">
 
 
   	
-<div id=suitecontext>
-</div>
-<div id=treelog onclick="this.style.visibility = hidden;" style="width: auto; height: auto; visibility: hidden; background: #E0E0FF; position: absolute; border: solid 1px black; "></div>
+<div id=suitecontext onclick="clickDoc(event);"> </div>
+<div id=treelog onclick="this.style.visibility = hidden; return true;" style="width: auto; height: auto; visibility: hidden; background: #E0E0FF; position: absolute; border: solid 1px black; "></div>
 	
 
 
@@ -95,9 +102,8 @@ function renderNodeSuiteContextHeader(suiteExecContext, resultDir, nodeUrl){
 			items.push('<td class="svcAll" style="width: 100px;"> <a href="#" onclick="ajax(\''+nodeUrl+'/form/status/cancelcontext?resultDir='+resultDir+'\'); return true;" > call threads stop </a> </td>');
 			items.push('<td class="svcAll" style="width: 80px;"> <a href="#" onclick="ajax(\''+nodeUrl+'/form/status/softstopcontext?resultDir='+resultDir+'\'); return true;" > soft stop </a> </td>');
 		}
-			 	
-		if (suiteExecContext.completed == true)
-			items.push('<td class="svcAll" style="width: 80px;"> <a href="#" onclick="ajax(\''+nodeUrl+'/form/status/deletecontext?resultDir='+resultDir+'\'); return true;"> delete suite </a> </td>');
+
+		items.push('<td class="svcAll" style="width: 80px;"> <a href="'+nodeUrl+'/form/status/suitecontextemail?resultDir='+resultDir+'" target=blank > email report </a> </td>');
 				
 		items.push('</tr>');
 		items.push('</TABLE>');

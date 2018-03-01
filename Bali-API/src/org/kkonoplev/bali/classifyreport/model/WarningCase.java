@@ -31,7 +31,6 @@ public class WarningCase implements Serializable {
     private String testLabel = "";
     private String method="";
     private String msgAdd="";
-    private int count = 1;
     private String threadId="1";
      
    

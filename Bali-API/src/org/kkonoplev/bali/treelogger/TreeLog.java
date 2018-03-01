@@ -46,7 +46,11 @@ public class TreeLog implements Serializable {
 	public void logFail(String msg) {
 		current.addChild(new LogNode(msg, true));
 	}
-	
+
+	public void logFail(String msg, int id) {
+		current.addChild(new LogNode(msg, true, id+""));
+	}
+
 	public void addFailMarkToLastMsg(){
 		
 		if (current.isFolder()){
@@ -56,5 +60,6 @@ public class TreeLog implements Serializable {
 			current.setFailed(true);
 		
 	}
+
 
 }

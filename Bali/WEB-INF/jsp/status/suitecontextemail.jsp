@@ -68,7 +68,7 @@
     
 	<td style="width:20px;">
 		<c:choose>
-  			<c:when test="${testExecContext.hasCriticalErrors == false}">
+  			<c:when test="${testExecContext.errorCount > 0}">
   			 	${testExecContext.errorCount} 
   			</c:when>
 			<c:otherwise>   
@@ -81,14 +81,14 @@
 	 
      <td style="width:30px;">      	
      	<c:choose>
-  			<c:when test="${testExecContext.status == 'success'}">
-  			 	<b> ${testExecContext.status} </b> 
+  			<c:when test="${testExecContext.status.desc == 'success'}">
+  			 	<b> ${testExecContext.status.desc} </b> 
   			</c:when>
-  			<c:when test="${testExecContext.status == 'fail'}">
-  			 	<i> ${testExecContext.status} </i> 
+  			<c:when test="${testExecContext.status.desc == 'fail'}">
+  			 	<i> ${testExecContext.status.desc} </i> 
   			</c:when>
 			<c:otherwise>   
-				${testExecContext.status}
+				${testExecContext.status.desc}
  		 	</c:otherwise>
 	 	</c:choose>
      </td>

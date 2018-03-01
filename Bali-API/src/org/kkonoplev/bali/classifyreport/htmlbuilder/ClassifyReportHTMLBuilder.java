@@ -52,9 +52,10 @@ public class ClassifyReportHTMLBuilder {
 		
 		String text = "<html> <meta charset='UTF-8'> <head>\n";
 		text += "<title> "+viewConfig.getHeaderText()+"  </title>\n";
+		text += "<script src=\"../../data/js/flot/jquery.js\"> </script>\n";
+		text += "<script src=\"../../data/tree/jquery.tree.js\"> </script>\n";
 		text += "<link href=\"../../classify.css\" rel=\"stylesheet\" type=\"text/css\" title=\"Style\" >\n";
 		text += "<script src=\"../../classify.js\"> </script>\n";
-		text += "<script src=\"../../data/js/flot/jquery.js\"> </script>\n";
 		text += "</head> <body onload=\"onPageLoad();\" >\n";
 		text += "<br> <h1> "+viewConfig.getHeaderText()+" </h1> <br>\n";
 		text += "<hr size='1'/>\n ";
@@ -88,7 +89,9 @@ public class ClassifyReportHTMLBuilder {
 	    else 
 	    	text += rerunModule();
 	     
+	    
 	    text += "<div id=warningCasesLayer style=\"visibility: hidden; position: absolute; background:#E0E0FF; left: 0px; top: 0px;\"> warning cases </div>";
+	    text += "<div id=treelog onclick='this.style.visibility = hidden;' style='width: auto; height: auto; visibility: hidden; background: #E7EEF7; position: absolute; border: solid 1px black;'></div>";
 	    text += "<body> <html> \n";
 
 	    return text;

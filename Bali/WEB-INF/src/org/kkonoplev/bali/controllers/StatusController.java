@@ -494,11 +494,17 @@ public class StatusController {
 			TestExecContext testExecContext = suiteExecContext.findByClassNameThreadId(testExecContextBean.getClassName(), testExecContextBean.getThreadId());
 			TreeLog tlog = testExecContext.getTreeLog();
 			
+			String nodeId = req.getParameter("id");
+			
 			String fname = "treeLog.html";
 			TreeLogHTMLBuilder builder = new TreeLogHTMLBuilder(tlog);
 			builder.setJquerysrc("");
 			builder.setJquerytreesrc("");
 			builder.setCss("/bali/data/tree/demo.css");
+			if (nodeId != null){
+				builder.setId(nodeId);
+				builder.setExpand(true);
+			}
 			String html = builder.buildHTML();
 			res.getWriter().append(html);
 

@@ -194,12 +194,16 @@ public class TestExecContext implements Serializable {
 
 		org.kkonoplev.bali.classifyreport.model.Warning warning = WarningBuilder.build(errorText, this, artifactsBuilders);
 		suiteExecContext.getClassifyReport().addWarning(warning);
-		errorCount++;
 		
 		ClassifyReportHTMLBuilder classifyReportBuilder = new ClassifyReportHTMLBuilder(suiteExecContext.getClassifyReport());
 		classifyReportBuilder.save();
-
+		
+		getTreeLog().openLevel("Error");
 		getTreeLog().addFailMarkToLastMsg();
+		getTreeLog().logFail(errorText, errorCount);
+		getTreeLog().closeLevel();
+		
+		errorCount++;
 		
 		if (getDebugMode()) {
 
@@ -649,8 +653,5 @@ public class TestExecContext implements Serializable {
 	public void setTreeLog(TreeLog treeLog) {
 		this.treeLog = treeLog;
 	}
-	
-	
-	
 	
 }

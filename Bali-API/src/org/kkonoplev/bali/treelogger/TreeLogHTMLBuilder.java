@@ -11,7 +11,9 @@ public class TreeLogHTMLBuilder {
 	
 	private static final Logger log = Logger.getLogger(TreeLogHTMLBuilder.class);
 	private TreeLog treeLog;
+	private String id = "";
 	private String treeId = "treeId";
+	private boolean expand = false;
 	private String jquerysrc = "tree/jquery.js";
 	private String jquerytreesrc = "tree/jquery.tree.js";
 	private String css = "tree/demo.css";
@@ -186,8 +188,11 @@ public class TreeLogHTMLBuilder {
 		buf.append(len(rootline)+" <ul> \n");
 		
 		for (LogNode childNode: logNode.getChilds()) 			
-			if (childNode.isFolder()){								
-				buf.append(len(rootline+1)+" <li> "+renderNode(childNode, projName));
+			if (childNode.isFolder()){		
+				String cl = ""; 
+				if (expand && (getNodeState(childNode, projName) != State.UNCHECKED))
+					cl = "class='last open'";
+				buf.append(len(rootline+1)+" <li "+cl+"> "+renderNode(childNode, projName));
 				renderTreeLogStructure(childNode, buf, projName, rootline+1);
 				buf.append(len(rootline+1)+"</li>\n");				
 			} else {								
@@ -249,10 +254,17 @@ public class TreeLogHTMLBuilder {
 					
 		}	else { 	
 		
-			if (node.isFailed())
-				return State.CHECKED;
-			else
-				return State.UNCHECKED;
+			if (id.equals("")) {
+				if (node.isFailed())
+					return State.CHECKED;
+				else
+					return State.UNCHECKED;
+			} else {
+				if ((node.getId()+"").equals(id))
+					return State.CHECKED;
+				else
+					return State.UNCHECKED;
+			}
 			
 		}
 
@@ -278,7 +290,11 @@ public class TreeLogHTMLBuilder {
 	
 	
 	private String getNodeHeader(LogNode node) {
-		String leaf = "<span style='color:black'>"+ node.getText()+" </span> ";
+		String color = "black";
+		if (node.isFailed())
+			color = "red";
+		
+		String leaf = "<span style='color:"+color+"'>"+ node.getText()+" </span> ";
 		return leaf;
 	}
 
@@ -291,5 +307,27 @@ public class TreeLogHTMLBuilder {
 	public void setCss(String css) {
 		this.css = css;
 	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public boolean isExpand() {
+		return expand;
+	}
+
+
+	public void setExpand(boolean expand) {
+		this.expand = expand;
+	}
+	
+	
 	
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class LogNode implements Serializable {
 	
 	private String text = "";
+	private String title = "";
+	private String id = "";
 	private ArrayList<LogNode> childs = new ArrayList<LogNode>();
 	private LogNode parent;
 	private boolean failed = false;
@@ -35,6 +37,12 @@ public class LogNode implements Serializable {
 		this.failed = failed;
 	}
 	
+	public LogNode(String text, boolean failed, String id) {
+		this.text = text;
+		this.failed = failed;
+		this.id = id;
+	}
+
 	public String getText() {
 		return text;
 	}
@@ -74,5 +82,21 @@ public class LogNode implements Serializable {
 		this.failed = failed;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	
 }

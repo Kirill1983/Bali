@@ -10,6 +10,7 @@
 <link type="text/css" href="/bali/data/css/Default.css" rel="StyleSheet">
 
 <script src="/bali/data/tree/jquery.js" type="text/javascript"></script>
+<script src="/bali/data/tree/jquery.tree.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 

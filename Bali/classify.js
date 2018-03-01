@@ -281,9 +281,36 @@ function SetCookie (name, value, expires, path, domain, secure) {
  function hideWarningCaseLayer(){
     var warningCasesLayer = document.getElementById("warningCasesLayer");
     warningCasesLayer.style.visibility = 'hidden'; 
+    var treeLog = document.getElementById("treelog");
+    treeLog.style.visibility = 'hidden';
     isShown = false;   
  }
 
+ function previewTreeLog(event, test, id, threadId, nodeUrl, resultDir) {
+	  
+	  var treelog = document.getElementById("treelog");
+
+	  if (treelog.style.visibility == 'visible'){
+		  treelog.style.visibility = 'hidden';
+		  return;
+	  }  
+	  
+	  //alert(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId+"&id="+id);
+	  
+	  $.get(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId+"&id="+id,
+			  function(data) {
+		  		$("#treelog").html(data);
+	
+		  		treelog.style.left = event.clientX;
+		  		treelog.style.top  = event.clientY;
+		  		treelog.style.visibility = 'visible'; 
+
+		  		refreshPage();
+		  		
+			  }
+	  		);
+	  		
+}
 
  function createWarningCaseLayerHTML(){
 
@@ -335,6 +362,13 @@ function SetCookie (name, value, expires, path, domain, secure) {
       href += "<A href='"+item.href+"'>"+item.name+"</A> &nbsp; &nbsp;";
     }
   }
+
+  for (i = 4; i < d.length; i++){
+	    item = d[i];
+	    if (item.type == 'TreeLog'){
+	      href += "<A href='#' onclick=\"previewTreeLog(event,\'"+testTitle+"\',\'"+item.id+"\',\'"+item.threadId+"\',\'"+item.nodeUrl+"\', \'"+suiteTitle+"\');\" >treelog</A> &nbsp; &nbsp;";
+	    }
+	  }
 
   if (href != "")
    innerHTML +=  "<tr><td> <font size=3> "+href+"</font> </td></tr>";
