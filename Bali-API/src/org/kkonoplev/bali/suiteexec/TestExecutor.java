@@ -31,10 +31,11 @@ public class TestExecutor extends Thread {
 	
 	private static final Logger log = Logger.getLogger(TestExecutor.class);
 	
-	protected SuiteExecProcessor execProcessor;
-	protected TestExecContext testExecContext;
-	private Monitor monitor = new Monitor();
 	
+	protected transient SuiteExecProcessor execProcessor;
+	protected TestExecContext testExecContext;
+	
+	private transient Monitor monitor = new Monitor();
 	protected boolean stop = false;
 	
 	public TestExecutor(SuiteExecProcessor execProcessor, int i){

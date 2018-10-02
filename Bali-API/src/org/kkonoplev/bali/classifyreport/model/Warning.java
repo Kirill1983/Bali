@@ -59,7 +59,7 @@ public class Warning implements Serializable {
         Date date1 = new Date();
         date = date1.toLocaleString();
 
-        msg = "";
+        msg = error.getMessage();
         msg = msg.replaceAll("\n", "");
         msg = msg.replaceAll(sep, "");
         

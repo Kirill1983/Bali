@@ -13,6 +13,7 @@ import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseHREFResDirArt
 import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseIMGArtifact;
 import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseResultDirArtifact;
 import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseIFrameArtifact;
+import org.kkonoplev.bali.classifyreport.model.artifact.WarningCaseTreeLogArtifact;
 import org.kkonoplev.bali.gridhub.GridSuiteMdl;
 import org.kkonoplev.bali.gridhub.NodeSuiteMdl;
 import org.kkonoplev.bali.gridhub.RequestAPI;
@@ -29,13 +30,15 @@ public class MergeClassifyReports {
 		    .registerSubtype(WarningCaseHREFArtifact.class, "HREF")
 		    .registerSubtype(WarningCaseHREFResDirArtifact.class, "HREFDir")
 			.registerSubtype(WarningCaseIMGArtifact.class, "IMG")
-			.registerSubtype(WarningCaseIFrameArtifact.class, "XML");
+			.registerSubtype(WarningCaseIFrameArtifact.class, "XML")
+			.registerSubtype(WarningCaseTreeLogArtifact.class, "TreeLog");
+	
 	
 	public static void main(String[] args) throws Exception {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(runtimeTypeAdapterFactory).create();
 			
-		SuiteExecContext ctx1 = SuiteExecContext.deserialize("C:\\projects\\Bali\\results\\Feb_15_16_49_32_334_ENV_A_grid31\\suiteExecContext.txt");		
+		SuiteExecContext ctx1 = SuiteExecContext.deserialize("C:\\projects\\Bali\\results\\Sep_26_02_06_39_115_ENV_A_grid75\\suiteExecContext.txt");		
 		String res = gson.toJson(ctx1.getClassifyReport());
 		System.out.println(res);
 		ClassifyReport fromJson = gson.fromJson(res, ClassifyReport.class);

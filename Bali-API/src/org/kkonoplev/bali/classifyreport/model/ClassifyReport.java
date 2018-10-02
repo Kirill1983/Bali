@@ -132,10 +132,8 @@ public class ClassifyReport implements Serializable {
       
     	int id = indexOf(newWarning);
     	
-    	if (newWarning.getId() == -1)
+    	if (id == -1){
     		newWarning.setId(nextWarnId());
-    	
-        if (id == -1){
         	warnings.add(newWarning);
         	return;
         }

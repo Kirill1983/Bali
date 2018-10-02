@@ -85,13 +85,16 @@
 
 
    	
-<div id=suitecontext />
+<div id=suitecontext> </div>
 <div id=treelog onclick="this.style.visibility = hidden;" style="width: auto; height: auto; visibility: hidden; background: #E0E0FF; position: absolute; border: solid 1px black; "></div>
 
-
-<c:forEach items="${gsuiteExecContext.gsuiteMdl.nodeSuites}" var="nodeSuite">	 
+<c:forEach items="${gsuiteExecContext.gsuiteMdl.nodeSuites}" var="nodeSuite">
 <div id=node${nodeSuite.node.id}></div>
 </c:forEach>		
+
+
+
+
 
 
 <script>

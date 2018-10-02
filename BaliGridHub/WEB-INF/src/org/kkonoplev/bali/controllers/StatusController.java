@@ -147,7 +147,7 @@ public class StatusController {
 		
 		@RequestMapping(value="/executors")
 	    public String execstatus(HttpServletRequest req) throws Exception {	
-			req.setAttribute("threadsCount", BaliServices.getSuiteService().getSuiteExecProcessor().getTestExecutors().size());
+			req.setAttribute("nodes", BaliServices.getGridHubService().getGridHub().getNodes());
 			return execstatusTile;		
 		}
 		
@@ -179,7 +179,8 @@ public class StatusController {
 		}
 		
 		@RequestMapping(value="/resources")
-	    public String resourcesstatus(HttpServletRequest req) throws Exception {		 	
+	    public String resourcesstatus(HttpServletRequest req) throws Exception {		 
+			req.setAttribute("nodes", BaliServices.getGridHubService().getGridHub().getNodes());
 		 	return resourcesstatusTile;		
 		}
 		
@@ -358,13 +359,7 @@ public class StatusController {
 			
 			log.info("Open gsuite: "+gsuiteExecContext.getResultDir());
 			GridSuiteExecContext ctx = BaliServices.getSuiteService().getGridSuiteExecContext(gsuiteExecContext.getResultDir());
-			if (ctx == null)
-				log.info("NULL not found gsuite context");
-			else
-				log.info("found gsuite context");
-			
 			req.setAttribute("gsuiteExecContext", ctx);
-			
 			
 			return suiteContextTile;		 	
 		}

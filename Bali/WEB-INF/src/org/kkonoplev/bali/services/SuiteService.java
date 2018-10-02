@@ -100,7 +100,7 @@ public class SuiteService {
 		
 	}
 	
-	
+
 	public Properties loadSuiteProperties(SuiteMdl suiteMdl) throws Exception{
 		
 		Properties properties = new Properties();

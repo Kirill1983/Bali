@@ -13,7 +13,6 @@ import org.kkonoplev.bali.classifyreport.htmlbuilder.ClassifyReportHTMLBuilder;
 import org.kkonoplev.bali.classifyreport.model.ClassifyReport;
 import org.kkonoplev.bali.classifyreport.model.OnNodeSuite;
 import org.kkonoplev.bali.classifyreport.model.Warning;
-import org.kkonoplev.bali.classifyreport.model.WarningCase;
 import org.kkonoplev.bali.common.perfomance.PerfomanceReport;
 import org.kkonoplev.bali.suiteexec.SuiteMdl;
 

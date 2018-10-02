@@ -1,4 +1,4 @@
-package org.kkonoplev.bali.selenium.browser;
+	package org.kkonoplev.bali.selenium.browser;
 
 import java.net.URL;
 import java.util.Set;
@@ -112,7 +112,7 @@ public class Browser extends TestExecResource {
 
 	public boolean init(TestExecContext testExecContext) throws Exception {
 		
-		status = "initializing...";
+		status = "checking...";
 		String browserType = "";
 		
 		if (testExecContext != null)
@@ -125,7 +125,9 @@ public class Browser extends TestExecResource {
 			if (webdriver == null){
 				initFromNull(browserType);
 			} else {
-				if (lastInitType != browserType){
+				if (!lastInitType.equals(browserType)){
+					log.info("Last Init type:"+lastInitType+" is different from requested:"+browserType);
+					log.info("quit current browser");
 					webdriver.quit();
 					initFromNull(browserType);
 				} else {
@@ -133,6 +135,7 @@ public class Browser extends TestExecResource {
 				}
 			}	
 			
+			status = "online";
 			log.info(this+" inited succesfully!");
 			this.browserType = browserType;
 			cleanCookie();
@@ -149,6 +152,8 @@ public class Browser extends TestExecResource {
 		while (!isAlive() && (tries < maxTries)){
 			log.info(this+" try init case:"+tries);
 			try {
+				log.info("browser quite, before re-new");
+				webdriver.quit();
 				initFromNull(browserType);
 			} catch (Exception e){
 				log.warn(this+" Exception during init, try case:"+tries);
@@ -181,7 +186,7 @@ public class Browser extends TestExecResource {
 	private void initFromNull(String browserType) throws Exception {
 		
 		alignInitSpeed();
-		status = browserType+" init";
+		status = browserType+" init...";
 		
 		if (!useGrid()){		
 			if (browserType.equals(BROWSER_TYPE.IE.getType())){				
@@ -214,7 +219,7 @@ public class Browser extends TestExecResource {
 			webdriver = new ScreenShotRemoteWebDriver(new URL(gridHubURL), capability);		
 		}				
 		
-		status = "up";
+		status = "online";
 		lastInitType = browserType;
 		
 	}

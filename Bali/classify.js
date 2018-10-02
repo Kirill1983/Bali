@@ -76,24 +76,9 @@ function SetCookie (name, value, expires, path, domain, secure) {
 
  var isShow=false;
  var isBugShow=false;
- var warningSelectObj=null;
+ var focusWarnId = 0;
 
-
- function nextSelect(){
-	if (warningSelectObj.selectedIndex == (warningSelectObj.length-1))
-		warningSelectObj.selectedIndex = 0;
-	else 
-		warningSelectObj.selectedIndex++;
- }
-
- function prevSelect(){
-	if (warningSelectObj.selectedIndex == 0)
-		warningSelectObj.selectedIndex = warningSelectObj.length-1;
-	else 
-		warningSelectObj.selectedIndex--;
- }
-
- 
+// Rerun start ********************************** 
  function updateWarningIdsList(){
 	var ids = "";
  	tags=document.body.getElementsByTagName('INPUT');
@@ -143,72 +128,24 @@ function SetCookie (name, value, expires, path, domain, secure) {
 
  }
 
-
-
- // если нажали на элементе вниз или вверх и поменялся активный скриншот для отображения
- function keyPress(ev){
-
-
-	ev = ev || window.event;
-	var code = (ev.keyCode || ev.which);
-
-	if (ev.target.id == 'email')
-		return true;
-
-	if ((code != 37) && (code != 38) && (code != 39) && (code != 40) && (code != 32) && (code != 27))
-		return true;
-
-        if (isWarningCaseLayerShown()) {
-	   if ((code == 37) || (code == 38) || (code == 39) || (code == 40)){
-	 	showWarningCaseLayer();
-		return true;
-	   }
-	}
-
-
-        // пробел - включает - выключает отображение
-        if (code == 32 || code == 27) {
-		if (isWarningCaseLayerShown())
-		 hideWarningCaseLayer();
-	}
-
-
-
- }
-
- function isWarningCaseLayerShown(){
-
-    var warningCasesLayer = document.getElementById("warningCasesLayer");
-
-    if ( warningCasesLayer.style.visibility == 'hidden')
-    	return false;
-    else 
-        return true;
-       
-   
- } 
+// Params start ********************************** 
 
 
  function getProject(){
 	var prj = "";
-
-
 	prj = projectname.value;	
-
 	if (prj == "") {
 		if (GetCookie('bprj') != null)
 			prj = GetCookie('bprj');
 		else
 			prj = "";
 	}
-
 	return prj;
  }
 
 
  function saveEmail(obj){
 	SetCookie(obj.id, obj.value, expiryLong);
-	
  }
 
  function saveProjectParam(obj){
@@ -232,7 +169,9 @@ function SetCookie (name, value, expires, path, domain, secure) {
 	
  }
 
+// Report view **************************
 
+ 
  function updateWarningCaseLayerIfShown(){
 
    if (isWarningCaseLayerShown())
@@ -240,42 +179,43 @@ function SetCookie (name, value, expires, path, domain, secure) {
 
  }
 
+ function isWarningCaseLayerShown(){
+
+    var warningCasesLayer = document.getElementById("warningCasesLayer");
+    if ( warningCasesLayer.style.visibility == 'hidden')
+    	return false;
+    else 
+        return true;
+          
+ } 
+
+
  function switchPrevWarningCase(){
    prevSelect();
    updateMsgAddMainPage()
-   showWarningCaseLayer();
+   showWarningCaseLayerNG(focusWarnId);
  }
 
  function switchNextWarningCase(){
    nextSelect();
    updateMsgAddMainPage()
-   showWarningCaseLayer();
+   showWarningCaseLayerNG(focusWarnId);
  }
 
- function showWarningCaseLayer(){
-
-   var warningCasesLayer = document.getElementById("warningCasesLayer");
-   warningCasesLayer.style.left = document.body.scrollLeft;
-   warningCasesLayer.style.top  = document.body.scrollTop;
-
-   var innerHTML = createWarningCaseLayerHTML();
-   warningCasesLayer.innerHTML = innerHTML;
-
-   warningCasesLayer.style.visibility = 'visible'; 
-   isShown = true;
-   warningSelectObj.focus();
-   
-		
+ function nextSelect(){
+	var warnSelect = document.getElementById(focusWarnId);
+	if (warnSelect.selectedIndex == (warnSelect.length-1))
+		warnSelect.selectedIndex = 0;
+	else 
+		warnSelect.selectedIndex++;
  }
 
- function updateMsgAddMainPage(){
-
-    eval(warningSelectObj.options[warningSelectObj.selectedIndex].value);
-    var jid    = d[0];
-    var msgAdd = d[3];
-
-    document.getElementById(jid+'msgAdd').innerHTML = "<font color=grey> "+msgAdd+" </font>"; 
-
+ function prevSelect(){
+	var warnSelect = document.getElementById(focusWarnId);
+	if (warnSelect.selectedIndex == 0)
+		warnSelect.selectedIndex = warnSelect.length-1;
+	else 
+		warnSelect.selectedIndex--;
  }
 
  function hideWarningCaseLayer(){
@@ -286,48 +226,25 @@ function SetCookie (name, value, expires, path, domain, secure) {
     isShown = false;   
  }
 
- function previewTreeLog(event, test, id, threadId, nodeUrl, resultDir) {
-	  
-	  var treelog = document.getElementById("treelog");
+ function showWarningCaseLayerNG(){
 
-	  if (treelog.style.visibility == 'visible'){
-		  treelog.style.visibility = 'hidden';
-		  return;
-	  }  
-	  
-	  //alert(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId+"&id="+id);
-	  
-	  $.get(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId+"&id="+id,
-			  function(data) {
-		  		$("#treelog").html(data);
-	
-		  		treelog.style.left = event.clientX;
-		  		treelog.style.top  = event.clientY;
-		  		treelog.style.visibility = 'visible'; 
+   var warningCasesLayer = document.getElementById("warningCasesLayer");
+   warningCasesLayer.style.left = document.body.scrollLeft;
+   warningCasesLayer.style.top  = document.body.scrollTop;
+   warningCasesLayer.innerHTML = createWarningCaseLayerHTMLNG();
+   warningCasesLayer.style.visibility = 'visible'; 
+   isShown = true;   
+		
+ }
 
-		  		refreshPage();
-		  		
-			  }
-	  		);
-	  		
-}
+ function createWarningCaseLayerHTMLNG(){
 
- function createWarningCaseLayerHTML(){
+  var warnSelect = document.getElementById(focusWarnId);
+  var warnCaseId = warnSelect.selectedIndex;
 
-	// d[0] - jid
-	// d[1] - suiteTitle
-	// d[2] - testTitle
-	// d[3] - msgAdd
+  var warn = data.warns[focusWarnId];
+  var warnCase = warn.cases[warnCaseId];
 
-  eval(warningSelectObj.options[warningSelectObj.selectedIndex].value);
-
-  var jid = d[0];
-  var suiteTitle = d[1];
-  var testTitle  = d[2];
-  var msgAdd     = d[3];
-  var msg = document.getElementById(jid+"msg").innerHTML;
- 
- 
   var h = document.body.clientHeight;
   var w = document.body.clientWidth;
 
@@ -337,9 +254,9 @@ function SetCookie (name, value, expires, path, domain, secure) {
   var innerHTML = "<table width="+w+" height="+h1+" >"+
   "<tr> <td width='200px'> "+
 
-  "<div id=id1 > Test: "+testTitle+
-  "<BR> Suite: "+suiteTitle+
-  "<BR> Case: "+(warningSelectObj.selectedIndex+1)+"/"+warningSelectObj.length+
+  "<div id=id1 > Test: "+warnCase.test+
+  "<BR> Suite: "+warnCase.suite+
+  "<BR> Case: "+(warnCaseId+1)+"/"+warnSelect.length+
   "</div> " +
 
   "<BR> <font color=blue> " +
@@ -349,114 +266,124 @@ function SetCookie (name, value, expires, path, domain, secure) {
   " </font>"+
   " </td>"+
   
-  "<td> Error: <div  id=id1dmsg > "+msg+" <BR> "+msgAdd+" </div></td>" +
+  "<td> Error: <div  id=id1dmsg > "+warn.msg+" <BR> "+warnCase.msgAdd+" </div></td>" +
   "<td> JIRA-1235 </td>" +
   "</tr></table> ";
 
   innerHTML +=  "<table width="+w+" height="+h2+" align=center style='text-align: center'>";
-
-  var href = "";
-  for (i = 4; i < d.length; i++){
-    item = d[i];
-    if (item.type == 'HREF'){
-      href += "<A href='"+item.href+"'>"+item.name+"</A> &nbsp; &nbsp;";
-    }
-  }
-
-  for (i = 4; i < d.length; i++){
-	    item = d[i];
-	    if (item.type == 'TreeLog'){
-	      href += "<A href='#' onclick=\"previewTreeLog(event,\'"+testTitle+"\',\'"+item.id+"\',\'"+item.threadId+"\',\'"+item.nodeUrl+"\', \'"+suiteTitle+"\');\" >treelog</A> &nbsp; &nbsp;";
-	    }
-	  }
-
-  if (href != "")
-   innerHTML +=  "<tr><td> <font size=3> "+href+"</font> </td></tr>";
-  
-  for (i = 4; i < d.length; i++){
-    item = d[i];
-    if (item.type == 'IMG')
-      innerHTML += "<tr><td><img src='"+item.img+"'></img></td></tr>";
-    
-  }
-
-  for (i = 4; i < d.length; i++){
-	 item = d[i];
-	 if (item.type == 'IFrameView')
-	  innerHTML += "<tr><td><iframe src='"+item.href+"' width='80%' height=300 frameborder=1 > </iframe></td></tr>";    
-  }
-
+  innerHTML +=  addArtifactsToHTML(warnCase.test, warnCase.suite, warnCase.artifacts);
   innerHTML +=  "</table>";
   return innerHTML;
 
  }
 
 
- 
+ function updateMsgAddMainPage(){
+    var warnSelect = document.getElementById(focusWarnId)
+    var warnCaseId = warnSelect.selectedIndex;
+     
+    var warn = data.warns[focusWarnId];
+    var warnCase = warn.cases[warnCaseId];
 
- // если изменился элемент для отображения - обнови ссылку на слое
- function updateDivLink(){
-	// d[0] - jid
-	// d[1] - url
-	// d[2] - jpg
-	// d[3] - html
-	// d[4] - testLog
-	// d[5] - testTitle
-	// d[6] - suiteTitle
-	// d[7] - msgAdd
-
-	
-
-	
-  if ((warningSelectObj)) {
-	warningSelectObj.focus();
-
-	clearSelectColor();
-	warningSelectObj.style.color = "#0000AA";
-
-	eval(warningSelectObj.options[warningSelectObj.selectedIndex].value);
-	var lay = d[0];
-
-
-	document.getElementById(id+"durl").href     = d[1]; 
-	document.getElementById(id+"djpg").src      = d[2]; 
-	document.getElementById(id+'dhtml').href    = d[3]; 
-	document.getElementById(id+'dtestLog').href = d[4]; 
-
-	//информация об ошибке на странице. специфика
-	document.getElementById(lay+'msgAdd').innerHTML = "<font color=grey> "+d[7]+" </font>"; 
-
-
-	//информация об ошибке на слое
-        document.getElementById(id+"dmsg").innerHTML  =                 							                                                                document.getElementById(lay+"msg").innerHTML+"<BR>"+
-							        document.getElementById(lay+"msgAdd").innerHTML;
-
-	//информация о тесте на странице
-        document.getElementById(id+"dtest").innerHTML =   "Test: "+warningSelectObj.options[warningSelectObj.selectedIndex].text+"<BR>"+
-							  "Desc: "+d[5]+" <BR>"+
-		                 			  "Suite: "+d[6]+" <BR>"+
-                                                          "Case#: "+(warningSelectObj.selectedIndex+1)+"/"+warningSelectObj.length;
-
-	// слой баги поменять
-	if (document.getElementById(lay+"bugdiv") != null) {
-		document.getElementById("bugdiv").innerHTML = document.getElementById(lay+"bugdiv").innerHTML; 
-	} else {
-		if (document.getElementById("bugdiv") != null){
-	          var submitonline = "<BR> <a href='#aabb123' onclick='submit();'>auto submit</a>";
-           	  var bugIDlink = "<A target='_blank' href='https://jira.yandex-team.ru/secure/CreateIssue!default.jspa'> <font color='red'> create new 			issue </font> </A>" + submitonline;
-
-	          document.getElementById("bugdiv").innerHTML = bugIDlink; 
-		}
-	}
-	
-	
-
-
-  }
-
+    document.getElementById("id"+focusWarnId+'msgAdd').innerHTML = "<font color=grey> "+warnCase.msgAdd+" </font>"; 
  }
 
 
+ function addArtifactsToHTML(testTitle, suiteTitle, artifacts){
+
+  var innerHTML = "";
+  var artifactLink = "";
+  for (i = 0; i < artifacts.length; i++){
+    item = artifacts[i];
+    if (item.type == 'HREF'){
+      artifactLink += "<A href='"+item.href+"'>"+item.name+"</A> &nbsp; &nbsp;";
+    }
+  }
+
+  for (i = 0; i < artifacts.length; i++){
+        item = artifacts[i];
+	if (item.type == 'TreeLog'){
+	     artifactLink += "<A href='#' onclick=\"previewTreeLog(event,\'"+testTitle+"\',\'"+item.id+"\',\'"+item.threadId+"\',\'"+item.nodeUrl+"\', \'"+suiteTitle+"\');\" >treelog</A> &nbsp; &nbsp;";
+	   }
+	}
+
+  if (artifactLink != "")
+   innerHTML +=  "<tr><td> <font size=3> "+artifactLink+"</font> </td></tr>";
+  
+  for (i = 0; i < artifacts.length; i++){
+    item = artifacts[i];
+    if (item.type == 'IMG')
+      innerHTML += "<tr><td><img src='"+item.img+"'></img></td></tr>";
+  }
+
+  for (i = 0; i < artifacts.length; i++){
+     item = artifacts[i];
+     if (item.type == 'IFrameView') 
+      innerHTML += "<tr><td><iframe src='"+item.href+"' width='80%' height=300 frameborder=1 > </iframe></td></tr>";    
+  }
+
+   return innerHTML;
+ }
+
+function previewTreeLog(event, test, id, threadId, nodeUrl, resultDir) {
+	  
+	  var treelog = document.getElementById("treelog");
+
+	  if (treelog.style.visibility == 'visible'){
+		  treelog.style.visibility = 'hidden';
+		  return;
+	  }  
+	  
+	  
+	  $.get(nodeUrl+"/form/status/treeloghtml?resultDir="+resultDir+"&className="+test+"&threadId="+threadId+"&id="+id,
+			  function(data) {
+		  		$("#treelog").html(data);
+	
+		  		treelog.style.left = event.clientX;
+		  		treelog.style.top  = event.clientY;
+		  		treelog.style.visibility = 'visible'; 
+
+		  		
+			  }
+	  		);
+	  		
+}
+
+ 
+
+// если нажали на элементе вниз или вверх и поменялся активный скриншот для отображения
+
+ function keyPress(ev){
+
+	ev = ev || window.event;
+	var code = (ev.keyCode || ev.which);
+
+	if (ev.target.id == 'email')
+		return true;
+
+	if ((code != 37) && (code != 38) && (code != 39) && (code != 40) && (code != 32) && (code != 27)){
+		return true;
+        }
+
+        //if (isWarningCaseLayerShown()) {
+	   if ((code == 37) || (code == 38) || (code == 39) || (code == 40)){
+                alert(code);
+	 	showWarningCaseLayer();
+		return true;
+	   }
+	//}
+
+        // пробел - включает - выключает отображение
+        if (code == 32 || code == 27) {
+		if (isWarningCaseLayerShown())
+   		  hideWarningCaseLayer();
+                else{
+		  showWarningCaseLayerNG();	
+		}
+
+	}
+
+ }
 
 
 function onPageLoad() {
@@ -475,20 +402,65 @@ function onPageLoad() {
 
    // вешаем обработчик причины ошибки, чтобы сохранялись куки (checkbox причины)
    tags=document.body.getElementsByTagName('INPUT');
-   for(var j=0; j<tags.length; j++)
+   for(var j=0; j<tags.length; j++) {
+
    	if (tags[j].className == 'action') {
 
-		if (GetCookie(tags[j].id+"")) {
+		if (GetCookie(tags[j].id+"")) 
 			if (GetCookie(tags[j].id+"") == 'true')	tags[j].checked = true;
-		}
 
 		tags[j].onclick = function(ev) {
 			SetCookie(ev.target.id, ev.target.checked, expiryToday);
 		}
+		
 	}
 
+   	if (tags[j].className == 'warnCases') {
+		tags[j].onchange = function(ev) {
+			var id = ev.target.id;
+			focusWarnId = id;
+			updateMsgAddMainPage();
+		}
+	}
+   }
 
-    warningSelectObj=id1s;
+
+   tags=document.body.getElementsByTagName('select');
+   for(var j=0; j<tags.length; j++) 
+   	if (tags[j].className == 'warnCases') {
+
+		tags[j].onchange = function(ev) {
+
+			var id = ev.target.id;
+			focusWarnId = id;
+
+			if (isWarningCaseLayerShown())				
+				showWarningCaseLayerNG();
+			else
+				updateMsgAddMainPage();
+			
+		}
+
+	}
+   
+
+
+   tags=document.body.getElementsByTagName('a');
+   for(var j=0; j<tags.length; j++)
+   	if (tags[j].className == 'view') {
+		warnId = tags[j].getAttribute("warnid");
+
+		tags[j].onclick = function(ev) {
+			var id = ev.target.getAttribute("warnid");
+			focusWarnId = id;
+			showWarningCaseLayerNG();
+		}
+
+	}
+
+    document.onkeypress = function (ev) { keyPress(ev);}
+    warningCasesLayer.onkeypress = function (ev) { keyPress(ev);}
+
     
 }
 

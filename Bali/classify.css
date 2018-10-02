@@ -13,7 +13,24 @@
     padding:5px 8px;
     font-weight:bold;
 }
-  
+
+.warnCaseLayer {
+    visibility: hidden; 
+    position: absolute; 
+    background:#E0E0FF; 
+    left: 0px; 
+    top: 0px;  
+}
+
+.treeLog {
+   width: auto; 
+   height: auto; 
+   visibility: hidden; 
+   background: #E7EEF7; 
+   position: absolute; 
+   border: solid 1px black;
+}
+
 .svcBody {
     border-style:solid;
     border-color:#fff;

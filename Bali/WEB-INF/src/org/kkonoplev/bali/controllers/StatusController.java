@@ -203,6 +203,29 @@ public class StatusController {
 			req.setAttribute("projects", suiteSvc.getSuiteExecProcessor().getProjectSvc().getProjects());
 		 	return resourcesstatusjsonTile;		
 		}
+		
+		@RequestMapping(value="/threads/shortjson")
+	    public String threadsShortJson(HttpServletRequest req, HttpServletResponse res) throws Exception {		
+			
+		    res.addHeader("Access-Control-Allow-Origin", "*");
+			SuiteService suiteSvc = BaliServices.getSuiteService();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String json = gson.toJson(suiteSvc.getSuiteExecProcessor().getExecutorsInfo());
+			req.setAttribute("json", json);
+		 	return projectsjsonTile;		
+		}
+		
+		@RequestMapping(value="/threads/json")
+	    public String threadsjson(HttpServletRequest req, HttpServletResponse res) throws Exception {		
+			
+		    res.addHeader("Access-Control-Allow-Origin", "*");
+			SuiteService suiteSvc = BaliServices.getSuiteService();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String json = gson.toJson(suiteSvc.getSuiteExecProcessor().getTestExecutorsInfo());
+			req.setAttribute("json", json);
+		 	return projectsjsonTile;		
+		}
+
 
 		@RequestMapping(value="/projects/json")
 	    public String projectsjson(HttpServletRequest req, HttpServletResponse res) throws Exception {		
